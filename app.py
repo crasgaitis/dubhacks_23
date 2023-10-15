@@ -68,43 +68,33 @@ def results_page():
         print('Found it!')
         print(streams)
         
-    # Set active EEG stream to inlet and apply time correction
     print("Start acquiring data")
     inlet = StreamInlet(streams[0], max_chunklen=12)
 
-    # Get the stream info
     info = inlet.info()
     fs = int(info.nominal_srate())
 
-    # Initialize raw EEG data buffer
     eeg_buffer = np.zeros((int(fs * BUFFER_LENGTH), 1))
     filter_state = None  # for use with the notch filter
 
-    # Compute the number of epochs in "buffer_length"
     n_win_test = int(np.floor((BUFFER_LENGTH - EPOCH_LENGTH) /
                                 SHIFT_LENGTH + 1))
 
-    # Initialize the band power buffer (for plotting)
-    # bands will be ordered: [delta, theta, alpha, beta]
     band_buffer = np.zeros((n_win_test, 4))
 
-    # Obtain EEG data from the LSL stream
     eeg_data, timestamp = inlet.pull_chunk(
         timeout=1, max_samples=int(SHIFT_LENGTH * fs))
 
-    # Only keep the channel we're interested in
     ch_data = np.array(eeg_data)[:, INDEX_CHANNEL]
 
-    # Update EEG buffer with the new data
     eeg_buffer, filter_state = update_buffer(
         eeg_buffer, ch_data, notch=True,
         filter_state=filter_state)
 
-    # Get newest samples from the buffer
     data_epoch = get_last_data(eeg_buffer,
                                         EPOCH_LENGTH * fs)
 
-    # Compute band powers
+    # compute band powers
     band_powers = compute_band_powers(data_epoch, fs)
     band_buffer, _ = update_buffer(band_buffer,
                                             np.asarray([band_powers]))
@@ -153,10 +143,13 @@ def results_page():
     list_of_song_lyrics = [song_record["lyrics"] for song_record in filtered_data]
     
     list_of_song_lyrics = clean_all(list_of_song_lyrics)
+    
     list_of_words = clean_all(list_of_words)
 
     best_matching_song, spotifyLink, similarities = get_song(list_of_words, list_of_song_lyrics, filtered_data, modelw2v)
+    print(similarities)
     similarities = len(similarities) - 1
+    print(similarities)
 
     pattern = r"/track/(\w+)"
     match = re.search(pattern, str(spotifyLink))
@@ -173,6 +166,7 @@ def results_page():
     session['spotifyLink'] = spotifyLink
     session['result'] = result
     session['response'] = response
+    session['filtered_data'] = filtered_data
     
     return render_template('results.html', icon = icon, best_matching_song = best_matching_song, spotifyLink = spotifyLink, pred = result, response = response)
 
@@ -183,11 +177,12 @@ def results_more_page():
     icon = session.get('icon') 
     result = session.get('result')
     response = session.get('response')
+    filtered_data = session.get('filtered_data')
     
     random_index = random.randint(0, similarities)
     
-    best_matching_song = data[random_index-1]['songName']
-    spotifyLink = data[random_index-1]['spotifyLink']
+    best_matching_song = filtered_data[random_index-1]['songName']
+    spotifyLink = filtered_data[random_index-1]['spotifyLink']
     
     pattern = r"/track/(\w+)"
     match = re.search(pattern, str(spotifyLink))
@@ -198,8 +193,6 @@ def results_more_page():
         track_id = 'fail'
     
     spotifyLink = "https://open.spotify.com/embed/track/" + track_id + "?utm_source=generator"
-    
-    print(spotifyLink)
 
     return render_template('results-more.html', icon = icon, best_matching_song = best_matching_song, spotifyLink = spotifyLink, pred = result, response = response)
 

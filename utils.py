@@ -114,19 +114,19 @@ def word_embed(list, model, song = True):
     else:
         return word_embeddings
     
-def get_song(list_of_words, list_of_song_lyrics, data, model):
+def get_song(list_of_words, list_of_song_lyrics, f_data, model):
     list_of_words_embeddings = word_embed(list_of_words, model)
-    song_lyrics_embeddings = word_embed(list_of_song_lyrics, model)
+    song_lyrics_embeddings = word_embed(list_of_song_lyrics, model, True)
 
-    list_avg_embedding = np.mean(song_lyrics_embeddings, axis=0)
+    list_avg_embedding = np.mean(list_of_words_embeddings, axis=0)
 
-    similarities = [cosine_similarity([list_avg_embedding], [word_embedding]) for word_embedding in list_of_words_embeddings]
+    similarities = [cosine_similarity([list_avg_embedding], [song_embedding]) for song_embedding in song_lyrics_embeddings]
 
     best_match_index = np.argmax(similarities)
     # print(best_match_index)
     # print(len(data))
-    best_matching_song = data[best_match_index-1]['songName']
-    song_link = data[best_match_index-1]['spotifyLink']
+    best_matching_song = f_data[best_match_index-1]['songName']
+    song_link = f_data[best_match_index-1]['spotifyLink']
 
     return best_matching_song, song_link, similarities
 
