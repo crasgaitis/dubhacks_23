@@ -9,6 +9,24 @@
     font-weight: bold
 }
 
+#banner{
+  background-color: #6F85A6;
+  min-height: 16vh;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
+  color: white;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 50px;
+  padding-left: 15%;
+  margin-bottom: 0;
+  padding-bottom: 0
+}
+
+#mood{
+  font-size: 70px
+}
+
 /************ WELCOME PAGE SECTION ***************/
 
 .welcome-page {
