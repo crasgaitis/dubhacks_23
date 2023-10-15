@@ -34,6 +34,9 @@
     letter-spacing: 0;
     line-height: normal;
     background-color: transparent;
+    padding: 30px;
+    margin-bottom: 10vh;
+    margin-top: 10vh
   }
   
   .welcome-page .let-s-find-out {
@@ -46,6 +49,8 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px;
+    margin-left: 80%
   }
 
   .welcome-page .let-s-find-out:hover .text-wrapper {
