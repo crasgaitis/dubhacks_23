@@ -282,3 +282,83 @@
     font-size: 30px;
     width: 100%
   }
+
+  /* egg */
+  .EGG {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .EGG .logo {
+    position: absolute;
+    left: 0px;
+  }
+
+  .EGG .label {
+    width: 599px;
+    height: 114px;
+  }
+
+  .EGG .label .let-s-analyze-your {
+    position: absolute;
+    width: 915px;
+    top: 224px;
+    left: 152px;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 90px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+
+  .EGG .label .put-on-your-muse {
+    position: absolute;
+    width: 599px;
+    top: 490px;
+    left: 140px;
+    font-family: "Nunito-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 46px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+
+  .EGG .button {
+    position: absolute;
+    width: 241px;
+    height: 78px;
+    top: 646px;
+    left: 863px;
+    background-color: #6e84a6;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .EGG .button:hover .text-wrapper-3 {
+    color: #0b1e3c;
+    transition: color 0.3s ease;
+  }
+
+  .EGG .button:hover {
+    background-color: #d2dae5;
+  }
+  
+  .EGG .text-wrapper-3 {
+    position: absolute;
+    top: 16px;
+    left: 65px;
+    text-align: center;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
