@@ -37,6 +37,9 @@
   }
   
   .welcome-page .let-s-find-out {
+    position: relative;
+    top: 220px;
+    left: 910px;
     background-color: #6e84a6;
     border-radius: 30px;
     color: #ffffff;
@@ -46,6 +49,8 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    width: 266px;
+    height: 78px;
   }
 
   .welcome-page .let-s-find-out:hover .text-wrapper {
@@ -203,6 +208,7 @@
     font-family: "Nunito-SemiBold", Helvetica;
     font-weight: 600;
     color: #000000;
+    text-align: center;
     font-size: 20px;
     letter-spacing: 0;
     line-height: normal;
@@ -259,3 +265,81 @@
     letter-spacing: 0;
     line-height: normal;
   }
+
+  /* EGG PAGE */
+  .EEG {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    }
+
+    .EEG .div {
+    background-color: #ffffff;
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+    }
+
+    .EEG .overlap {
+    position: absolute;
+    width: 1440px;
+    height: 563px;
+    top: 461px;
+    left: 0;
+    }
+
+    .EEG .group {
+    position: absolute;
+    width: 1440px;
+    height: 512px;
+    top: 51px;
+    left: 0;
+    
+    }
+    .EEG .put-on-your-muse {
+    position: absolute;
+    width: 599px;
+    top: 0;
+    left: 142px;
+    font-family: "Nunito-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 48px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    }
+    .EEG .div-wrapper {
+    position: absolute;
+    width: 241px;
+    height: 78px;
+    top: 268px;
+    left: 1039px;
+    background-color: #6e84a6;
+    border-radius: 30px;
+    }
+    .EEG .text-wrapper {
+    position: absolute;
+    top: 16px;
+    left: 73px;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+    }
+    .EEG .let-s-analyze-your {
+    position: absolute;
+    width: 915px;
+    top: 224px;
+    left: 152px;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 80px;
+    letter-spacing: 0;
+    line-height: normal;
+    }
