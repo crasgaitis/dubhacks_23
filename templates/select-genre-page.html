@@ -11,36 +11,86 @@
         <p class="text-wrapper">What are your top 5 favorite genres?</p>
         
 
-          <div class="box">
-            <div class="rectangle">
-            <p class="list">1.</p>
-            <img class="polygon" src="/assets/img/polygon.png">
+        <div class="box">
+          <div class="rectangle">
+            <p class="list" id = 'list1'>1.</p>
+            <img class="polygon" src="/assets/img/polygon.png" onclick="showDropdown('dropdown1', 'list1')">
+            <div id="dropdown1" class="dropdown">
+              <select onchange="updateListText('list1', this)">
+                <option value="RB">R&B</option>
+                <option value="Rock">Rock</option>
+                <option value="Hiphop">Hip Hop</option>
+                <option value="Pop">Pop</option>
+                <option value="Rap">Rap</option>
+              </select>
             </div>
           </div>
+        </div>
+
           <div class="box">
             <div class="rectangle">
-            <p class="list">2.</p>  
-            <img class="polygon" src="/assets/img/polygon.png">
+            <p class="list" id = 'list2'>2.</p>  
+            <img class="polygon" src="/assets/img/polygon.png" onclick="showDropdown('dropdown2', 'list2')">
+            <div id="dropdown2" class="dropdown">
+              <select onchange="updateListText('list2', this)">
+                <option value="RB">R&B</option>
+                <option value="Rock">Rock</option>
+                <option value="Hiphop">Hip Hop</option>
+                <option value="Pop">Pop</option>
+                <option value="Rap">Rap</option>
+              </select>
+            </div>
             </div>
           </div>
+
           <div class="box">
             <div class="rectangle">
-            <p class="list">3.</p>  
-            <img class="polygon" src="/assets/img/polygon.png">
+            <p class="list" id = 'list3'>3.</p>  
+            <img class="polygon" src="/assets/img/polygon.png" onclick="showDropdown('dropdown3', 'list3')">
+            <div id="dropdown3" class="dropdown">
+              <select onchange="updateListText('list3', this)">
+                <option value="RB">R&B</option>
+                <option value="Rock">Rock</option>
+                <option value="Hiphop">Hip Hop</option>
+                <option value="Pop">Pop</option>
+                <option value="Rap">Rap</option>
+              </select>
+            </div>
             </div>
           </div>
+
           <div class="box">
             <div class="rectangle">
-            <p class="list">4.</p>  
-            <img class="polygon" src="/assets/img/polygon.png">
+            <p class="list" id = 'list4'>4.</p>  
+            <img class="polygon" src="/assets/img/polygon.png" onclick="showDropdown('dropdown4', 'list4')">
+            <div id="dropdown4" class="dropdown">
+              <select onchange="updateListText('list4', this)">
+                <option value="RB">R&B</option>
+                <option value="Rock">Rock</option>
+                <option value="Hiphop">Hip Hop</option>
+                <option value="Pop">Pop</option>
+                <option value="Rap">Rap</option>
+              </select>
+            </div>
             </div>
           </div>
+
           <div class="box">
             <div class="rectangle">
-            <p class="list">5.</p>  
-            <img class="polygon" src="/assets/img/polygon.png">
+            <p class="list" id = 'list5'>5.</p>  
+            <img class="polygon" src="/assets/img/polygon.png" onclick="showDropdown('dropdown5', 'list5')">
+            <div id="dropdown5" class="dropdown">
+              <select onchange="updateListText('list5', this)">
+                <option value="RB">R&B</option>
+                <option value="Rock">Rock</option>
+                <option value="Hiphop">Hip Hop</option>
+                <option value="Pop">Pop</option>
+                <option value="Rap">Rap</option>
+              </select>
+            </div>
             </div>
           </div>
+
           <a href="user-input-feelings-page.html">
             <button class="next">
                 <div class="text-wrapper2">Next</div>
@@ -50,5 +100,24 @@
         
       </div>
     </div>
+
+    <script>
+      function showDropdown(id) {
+        var dropdown = document.getElementById(id);
+        if (dropdown.style.display === "none" || dropdown.style.display === "") {
+          dropdown.style.display = "block";
+        } else {
+          dropdown.style.display = "none";
+        }
+      }
+
+      function updateListText(listId, select) {
+        var selectedOption = select.options[select.selectedIndex].text;
+        var listElement = document.getElementById(listId);
+        listElement.textContent = (listId.replace('list', '') + '. ' + selectedOption);
+
+      }
+    </script>
+
   </body>
 </html>
