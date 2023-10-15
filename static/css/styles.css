@@ -2,6 +2,10 @@
     font-family: "Nunito-SemiBold", Helvetica;
 }
 
+body{
+  background-image: url('./static/background.png');
+}
+
 .list{
     padding: 20px;
     margin: 20px;
@@ -24,13 +28,13 @@
 }
 
 #mood{
-  font-size: 70px
+  font-size: 70px;
+  background-color: rgb(41, 41, 41);
 }
 
 /************ WELCOME PAGE SECTION ***************/
 
 .welcome-page {
-    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -38,7 +42,7 @@
   }
   
   .welcome-page .div {
-    /* background-color: #ffffff; */
+    background-color: #ffffff;
     width: 1440px;
     height: 1024px;
     position: relative;
@@ -79,9 +83,9 @@
     transition: color 0.3s ease;
   }
 
-  .welcome-page .let-s-find-out:hover {
+ /* .let-s-find-out:hover {
     background-color: #d2dae5;
-  }
+  } */
   
   .welcome-page .text-wrapper {
     font-family: "Nunito-SemiBold", Helvetica;
@@ -93,7 +97,6 @@
   }
   
   .welcome-page .frame {
-    background-color: #ffffff;
     overflow: hidden;
   }
   
@@ -109,7 +112,6 @@
 
   /************ SELECT GENRE SECTION ***************/
   .select-genre-page {
-    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -117,7 +119,6 @@
   }
   
   .select-genre-page .div {
-    background-color: #ffffff;
     position: relative;
   }
   
@@ -139,7 +140,7 @@
     line-height: normal;
   }
 
-  .select-genre-page .box .rectangle {
+  .box .rectangle {
     position: relative;
     min-width: 766px;
     min-height: 82px;
@@ -192,7 +193,6 @@
 
   /* USER INPUT FEELINGS SECTION */
   .user-input-feelings {
-    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -200,7 +200,6 @@
   }
   
   .user-input-feelings .div {
-    background-color: #ffffff;
     width: 1440px;
     height: 1175px;
     position: relative;
@@ -224,7 +223,7 @@
     height: 82px;
     top: 407px;
     left: 338px;
-    background-color: #d2dae5;
+    /* background-color: #d2dae5; */
     border-radius: 20px;
     font-family: "Nunito-SemiBold", Helvetica;
     font-weight: 600;
@@ -271,10 +270,10 @@
     transition: color 0.3s ease;
   }
 
-  .user-input-feelings .div-wrapper:hover {
+  /* .user-input-feelings .div-wrapper:hover {
     background-color: #d2dae5;
   }
-  
+   */
   .user-input-feelings .text-wrapper-3 {
     position: absolute;
     top: 16px;
@@ -290,7 +289,7 @@
   .dropdown {
     display: none;
     position: absolute;
-    background-color: #fff;
+    /* background-color: #fff; */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     width: 100%
@@ -303,7 +302,6 @@
 
   /* egg */
   .EGG {
-    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -348,15 +346,14 @@
   }
 
   .EGG .button {
-    position: absolute;
-    width: 241px;
-    height: 78px;
-    top: 846px;
-    left: 1663px;
     background-color: #6e84a6;
     border-radius: 30px;
     transition: background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
+    padding: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 70vh
   }
 
   .EGG .button:hover .text-wrapper-3 {
@@ -369,10 +366,6 @@
   }
   
   .EGG .text-wrapper-3 {
-    position: absolute;
-    top: 16px;
-    left: 65px;
-    text-align: center;
     font-family: "Nunito-SemiBold", Helvetica;
     font-weight: 600;
     color: #ffffff;
@@ -501,7 +494,7 @@
     height: 121px;
     top: 0;
     left: 0;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     overflow: hidden;
 }
 

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from matplotlib import pyplot as plt
 
 app = Flask(__name__)
 
@@ -31,6 +32,10 @@ modelw2v = word2vec.Word2Vec(sentences, vector_size=100, window=5, min_count=1, 
 
 @app.route('/')
 def home():
+    return render_template('index.html')
+
+@app.route('/index.html')
+def index():
     return render_template('index.html')
 
 @app.route('/select-genre-page.html')
@@ -111,10 +116,31 @@ def results_page():
 
     df = pd.DataFrame(bw_data)
     
+    # plot 
+    x = [1, 2, 3, 4]
+    plt.scatter(x, band_powers[0:5], c='blue', marker='o', label='Points')
+
+    for i in range(len(x)):
+        plt.plot([x[i], x[i]], [0, band_powers[0:5][i]], 'r--')
+        
+    ax = plt.gca()
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+        
+    custom_xticks = ['Alpha', 'Beta', 'Theta', 'Delta']
+    ax.set_xticks(x)
+    ax.set_xticklabels(custom_xticks)
+
+    plt.xlabel('Brainwave Band')
+    plt.ylabel('Avg Voltage')
+    plt.ylim(0, 3)
+    
+    plt.savefig('static/plot_image.png', transparent=True)
+    
     pred = model.predict(df)
     result = pred_to_mh(pred[0])
-    
-    print(f'prediction: {result}')
+    response = response_list[result]
+    icon = icon_list[result]
     
     list_of_words = word_list[result]
     # new_words = ["I am so sad and I want to cry"]
@@ -128,10 +154,19 @@ def results_page():
     list_of_song_lyrics = clean_all(list_of_song_lyrics)
     list_of_words = clean_all(list_of_words)
 
-    best_matching_song, _ = get_song(list_of_words, list_of_song_lyrics, filtered_data, modelw2v)
-    print(f'song: {best_matching_song}')
+    best_matching_song, spotifyLink, _ = get_song(list_of_words, list_of_song_lyrics, filtered_data, modelw2v)
+
+    pattern = r"/track/(\w+)"
+    match = re.search(pattern, str(spotifyLink))
     
-    return render_template('results.html', best_matching_song = best_matching_song, pred = result)
+    if match:
+        track_id = match.group(1)
+    else: 
+        track_id = 'fail'
+        
+    spotifyLink = "https://open.spotify.com/embed/track/" + track_id + "?utm_source=generator"
+    
+    return render_template('results.html', icon = icon, best_matching_song = best_matching_song, spotifyLink = spotifyLink, pred = result, response = response)
 
 
 if __name__ == '__main__':

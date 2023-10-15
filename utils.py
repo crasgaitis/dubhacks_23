@@ -33,6 +33,22 @@ word_list = {
          "writing", "teacher", "students", "reading", "intelligent", "education"]
 }
 
+response_list = {
+    "Stressed": "Don't worry, you got this!",
+    "Depressed": "Hey! Don’t be so hard on yourself, you’re doing okay ~ ",
+    "Neutral": "It's always nice to chill out.",
+    "Happy": "It's always a good day to smile!",
+    "Studious": "Someone is on the grind!"
+}
+
+icon_list = {
+    "Stressed": "static/stressed.png",
+    "Depressed": "static/gloomy.png",
+    "Neutral": "static/neutral.png",
+    "Happy": "static/happy.png",
+    "Studious": 'static/studious.png'
+}
+
 def pred_to_mh(pred):
     label_mapping = {
         0: "Stressed",
@@ -110,8 +126,9 @@ def get_song(list_of_words, list_of_song_lyrics, data, model):
     # print(best_match_index)
     # print(len(data))
     best_matching_song = data[best_match_index-1]['songName']
+    song_link = data[best_match_index-1]['spotifyLink']
 
-    return best_matching_song, similarities
+    return best_matching_song, song_link, similarities
 
 def filter_songs(song_type, data):
     filtered_data = [record for record in data if song_type in record.get('mood', '').lower()]

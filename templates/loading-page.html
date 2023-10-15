@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="/static/css/styles.css" />
     </head>
     <body>
-        <img src="/assets/img/MyMelody_logo.PNG">
+        <img src="static/MyMelody_logo.PNG">
         <div class="loading">
             <div class="div">
                 <div class="group">
@@ -21,5 +21,15 @@
             </div>
         </div>
         <script src="/static/js/script.js"></script>
+        <script>
+            var delayInMilliseconds = 2600;
+
+            // Use setTimeout to trigger the redirection
+            setTimeout(function() {
+              // Replace 'new_page.html' with the URL of the page you want to redirect to
+              window.location.href = 'results.html';
+            }, delayInMilliseconds);
+
+        </script>
     </body>
 </html>
