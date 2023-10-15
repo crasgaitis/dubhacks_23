@@ -306,7 +306,7 @@
     position: absolute;
     width: 915px;
     top: 224px;
-    left: 152px;
+    left: 352px;
     font-family: "Nunito-SemiBold", Helvetica;
     font-weight: 600;
     color: #000000;
@@ -319,7 +319,7 @@
     position: absolute;
     width: 599px;
     top: 490px;
-    left: 140px;
+    left: 340px;
     font-family: "Nunito-Regular", Helvetica;
     font-weight: 400;
     color: #000000;
@@ -333,8 +333,8 @@
     position: absolute;
     width: 241px;
     height: 78px;
-    top: 646px;
-    left: 863px;
+    top: 846px;
+    left: 1663px;
     background-color: #6e84a6;
     border-radius: 30px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -362,3 +362,128 @@
     letter-spacing: 0;
     line-height: normal;
   }
+
+  /* Loading Page */
+  .loading {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.loading .div {
+    background-color: #ffffff;
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+}
+
+.loading .group {
+    position: absolute;
+    width: 864px;
+    height: 216px;
+    top: 272px;
+    left: 288px;
+}
+
+
+.loading .text-wrapper {
+    position: absolute;
+    top: 0;
+    left: 238px;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.loading .text-wrapper-2 {
+  position: absolute;
+  top: 189px;
+  left: 325px;
+  font-family: "Nunito-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  visibility: hidden;
+}
+
+.loading .overlap-group {
+    position: absolute;
+    width: 864px;
+    height: 23px;
+    top: 135px;
+    left: 0;
+    background-color: #d2dae6;
+    border-radius: 30px;
+}
+
+
+.loading .overlap-group span {
+  display: block;
+  height: 100%;
+}
+
+
+.loading .loading-rectangle {
+    height: 23px;
+    background-color: #6f85a6;
+    border-radius: 30px;
+    animation: progressBar 3s ease-in-out;
+    animation-fill-mode:both;
+}
+
+@keyframes progressBar {
+  0% { width: 0; }
+  100% {width: 100%; }
+}
+
+.loading .text-wrapper-3 {
+    position: absolute;
+    top: 189px;
+    left: 325px;
+    font-family: "Nunito-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.loading .text-wrapper-4 {
+  position: absolute;
+  top: 189px;
+  left: 325px;
+  font-family: "Nunito-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  visibility: hidden;
+}
+
+.loading .image {
+    position: absolute;
+    width: 1440px;
+    height: 386px;
+    top: 638px;
+    left: 0;
+    object-fit: cover;
+}
+
+.loading .frame {
+    position: fixed;
+    width: 1439px;
+    height: 121px;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
