@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Three equal-width columns */
+            grid-gap: 20px; /* Add some spacing between columns */
+        }
+
+        .column {
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .column p{
+            text-align: left;
+            padding-left: 30%
+        }
+
+        .bubble-box{
+            background-color: #D2DAE6;
+            border-radius: 20px
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="div">
+        <br/>
+        <img class="logo" src="static/MyMelody_logo.PNG" />
+
+        <div id = "banner">Your Current Mood Today: <BR/><span id = 'mood'>MELANCHOLY</span></div>
+
+        <div class="container">
+            <div class="column">
+                <!-- Content for the first column -->
+                <h2>Your Melody </h2>
+                <p> Hey! Don’t be so hard on yourself, <br/>
+                    you’re doing okay ~ </p>
+            </div>
+            <div class="column">
+                <!-- Content for the second column -->
+                <div class = 'bubble-box'>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4YGjBlNqjaUinn2aRkWcLG?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="column">
+                <h2>Melody Wrapped</h2>
+                <p style = "padding: 0; text-align: center">A playlist for you ~</p>
+            </div>
+        </div>
+    
+
+    </div>
+
+  </body>
+</html> 
