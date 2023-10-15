@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, session
 from matplotlib import pyplot as plt
+import random
 
 app = Flask(__name__)
+app.secret_key = 'cat_key'
 
 from pylsl import StreamInlet, resolve_byprop
 import pandas as pd
@@ -69,7 +71,6 @@ def results_page():
     # Set active EEG stream to inlet and apply time correction
     print("Start acquiring data")
     inlet = StreamInlet(streams[0], max_chunklen=12)
-    eeg_time_correction = inlet.time_correction()
 
     # Get the stream info
     info = inlet.info()
@@ -154,7 +155,8 @@ def results_page():
     list_of_song_lyrics = clean_all(list_of_song_lyrics)
     list_of_words = clean_all(list_of_words)
 
-    best_matching_song, spotifyLink, _ = get_song(list_of_words, list_of_song_lyrics, filtered_data, modelw2v)
+    best_matching_song, spotifyLink, similarities = get_song(list_of_words, list_of_song_lyrics, filtered_data, modelw2v)
+    similarities = len(similarities) - 1
 
     pattern = r"/track/(\w+)"
     match = re.search(pattern, str(spotifyLink))
@@ -165,9 +167,41 @@ def results_page():
         track_id = 'fail'
         
     spotifyLink = "https://open.spotify.com/embed/track/" + track_id + "?utm_source=generator"
+    session['similarities'] = similarities
+    session['icon'] = icon
+    session['best_matching_song'] = best_matching_song
+    session['spotifyLink'] = spotifyLink
+    session['result'] = result
+    session['response'] = response
     
     return render_template('results.html', icon = icon, best_matching_song = best_matching_song, spotifyLink = spotifyLink, pred = result, response = response)
 
+@app.route('/results-more.html')
+def results_more_page():
+    
+    similarities = session.get('similarities')
+    icon = session.get('icon') 
+    result = session.get('result')
+    response = session.get('response')
+    
+    random_index = random.randint(0, similarities)
+    
+    best_matching_song = data[random_index-1]['songName']
+    spotifyLink = data[random_index-1]['spotifyLink']
+    
+    pattern = r"/track/(\w+)"
+    match = re.search(pattern, str(spotifyLink))
+    
+    if match:
+        track_id = match.group(1)
+    else: 
+        track_id = 'fail'
+    
+    spotifyLink = "https://open.spotify.com/embed/track/" + track_id + "?utm_source=generator"
+    
+    print(spotifyLink)
+
+    return render_template('results-more.html', icon = icon, best_matching_song = best_matching_song, spotifyLink = spotifyLink, pred = result, response = response)
 
 if __name__ == '__main__':
     app.run(debug=True)
