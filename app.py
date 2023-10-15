@@ -2,6 +2,33 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+from pylsl import StreamInlet, resolve_byprop
+import pandas as pd
+import numpy as np
+from utils import *
+import pickle
+from itertools import chain
+import json
+
+BUFFER_LENGTH = 5
+EPOCH_LENGTH = 1
+OVERLAP_LENGTH = 0
+SHIFT_LENGTH = EPOCH_LENGTH - OVERLAP_LENGTH
+INDEX_CHANNEL = [0]
+
+with open('model_building/eeg_to_mh_state.pkl', 'rb') as file:
+    model = pickle.load(file)
+    
+with open('music/songs.json', 'r') as json_file:
+    data = json.load(json_file)
+
+list_of_song_lyrics = [song_record["lyrics"] for song_record in data]
+list_of_song_lyrics = clean_all(list_of_song_lyrics)
+list_of_words = clean_all(list(chain(*word_list.values())))
+corpus = build_corpus(list_of_words, list_of_song_lyrics)
+sentences = [word.split() for word in corpus]
+modelw2v = word2vec.Word2Vec(sentences, vector_size=100, window=5, min_count=1, sg=0)
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -18,9 +45,93 @@ def user_input_feelings_page():
 def egg_page():
     return render_template('egg-page.html')
 
+@app.route('/loading-page.html')
+def loading_page():
+    return render_template('loading-page.html')
+
 @app.route('/results.html')
 def results_page():
-    return render_template('results.html')
+    
+    # Search for active LSL streams
+    print('Looking for an EEG stream...')
+    streams = resolve_byprop('type', 'EEG', timeout=2)
+    if len(streams) == 0:
+        raise RuntimeError('Can\'t find EEG stream.')
+    else:
+        print('Found it!')
+        print(streams)
+        
+    # Set active EEG stream to inlet and apply time correction
+    print("Start acquiring data")
+    inlet = StreamInlet(streams[0], max_chunklen=12)
+    eeg_time_correction = inlet.time_correction()
+
+    # Get the stream info
+    info = inlet.info()
+    fs = int(info.nominal_srate())
+
+    # Initialize raw EEG data buffer
+    eeg_buffer = np.zeros((int(fs * BUFFER_LENGTH), 1))
+    filter_state = None  # for use with the notch filter
+
+    # Compute the number of epochs in "buffer_length"
+    n_win_test = int(np.floor((BUFFER_LENGTH - EPOCH_LENGTH) /
+                                SHIFT_LENGTH + 1))
+
+    # Initialize the band power buffer (for plotting)
+    # bands will be ordered: [delta, theta, alpha, beta]
+    band_buffer = np.zeros((n_win_test, 4))
+
+    # Obtain EEG data from the LSL stream
+    eeg_data, timestamp = inlet.pull_chunk(
+        timeout=1, max_samples=int(SHIFT_LENGTH * fs))
+
+    # Only keep the channel we're interested in
+    ch_data = np.array(eeg_data)[:, INDEX_CHANNEL]
+
+    # Update EEG buffer with the new data
+    eeg_buffer, filter_state = update_buffer(
+        eeg_buffer, ch_data, notch=True,
+        filter_state=filter_state)
+
+    # Get newest samples from the buffer
+    data_epoch = get_last_data(eeg_buffer,
+                                        EPOCH_LENGTH * fs)
+
+    # Compute band powers
+    band_powers = compute_band_powers(data_epoch, fs)
+    band_buffer, _ = update_buffer(band_buffer,
+                                            np.asarray([band_powers]))
+    bw_data = {
+    'Delta': [band_powers[0]],
+    'Theta': [band_powers[1]],
+    'Alpha': [band_powers[2]],
+    'Beta': [band_powers[3]]
+    }
+
+    df = pd.DataFrame(bw_data)
+    
+    pred = model.predict(df)
+    result = pred_to_mh(pred[0])
+    
+    print(f'prediction: {result}')
+    
+    list_of_words = word_list[result]
+    # new_words = ["I am so sad and I want to cry"]
+    
+    # for word in new_words:
+    #     list_of_words.append(word)
+    
+    filtered_data = filter_songs(str(result).lower(), data)
+    list_of_song_lyrics = [song_record["lyrics"] for song_record in filtered_data]
+    
+    list_of_song_lyrics = clean_all(list_of_song_lyrics)
+    list_of_words = clean_all(list_of_words)
+
+    best_matching_song, _ = get_song(list_of_words, list_of_song_lyrics, filtered_data, modelw2v)
+    print(f'song: {best_matching_song}')
+    
+    return render_template('results.html', best_matching_song = best_matching_song, pred = result)
 
 
 if __name__ == '__main__':
