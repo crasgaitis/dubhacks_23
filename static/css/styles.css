@@ -36,7 +36,7 @@
     background-color: transparent;
     padding: 30px;
     margin-bottom: 10vh;
-    margin-top: 10vh
+    margin-top: 15vh
   }
   
   .welcome-page .let-s-find-out {
@@ -50,7 +50,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     padding: 20px;
-    margin-left: 80%
+    margin-left: 70%
   }
 
   .welcome-page .let-s-find-out:hover .text-wrapper {
@@ -263,4 +263,18 @@
     font-size: 32px;
     letter-spacing: 0;
     line-height: normal;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%
+  }
+
+  .dropdown select{
+    font-size: 30px;
+    width: 100%
   }
