@@ -1,0 +1,261 @@
+*{
+    font-family: "Nunito-SemiBold", Helvetica;
+}
+
+.list{
+    padding: 20px;
+    margin: 20px;
+    font-size: 30px;
+    font-weight: bold
+}
+
+/************ WELCOME PAGE SECTION ***************/
+
+.welcome-page {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .welcome-page .div {
+    /* background-color: #ffffff; */
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+  }
+  
+  .welcome-page .hi-there-what-s-your {
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #0b1e3c;
+    font-size: 96px;
+    letter-spacing: 0;
+    line-height: normal;
+    background-color: transparent;
+  }
+  
+  .welcome-page .let-s-find-out {
+    background-color: #6e84a6;
+    border-radius: 30px;
+    color: #ffffff;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    font-size: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .welcome-page .let-s-find-out:hover .text-wrapper {
+    color: #0b1e3c;
+    transition: color 0.3s ease;
+  }
+
+  .welcome-page .let-s-find-out:hover {
+    background-color: #d2dae5;
+  }
+  
+  .welcome-page .text-wrapper {
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .welcome-page .frame {
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  
+  .welcome-page .logo {
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+    display: block;
+  }
+
+  /************ SELECT GENRE SECTION ***************/
+  .select-genre-page {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .select-genre-page .div {
+    background-color: #ffffff;
+    position: relative;
+  }
+  
+  .select-genre-page .text-wrapper {
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .select-genre-page .text-wrapper2 {
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+
+  .select-genre-page .box .rectangle {
+    position: relative;
+    min-width: 766px;
+    min-height: 82px;
+    background-color: #d2dae5;
+    border-radius: 20px;
+  }
+  
+  .select-genre-page .text {
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #051329;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+
+  .select-genre-page .box .polygon {
+    position: absolute;
+    width: 32px;
+    height: 28px;
+    left: 1035px;
+    top: 30px;
+  }
+
+  .select-genre-page .next {
+    position: relative;
+    top: 80px;
+    left: 950px;
+    background-color: #6e84a6;
+    border-radius: 30px;
+    color: #ffffff;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    font-size: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 166px;
+    height: 78px;
+  }
+
+  .select-genre-page .next:hover .text-wrapper2 {
+    color: #0b1e3c;
+    transition: color 0.3s ease;
+  }
+
+  .select-genre-page .next:hover {
+    background-color: #d2dae5;
+  }
+
+  /* USER INPUT FEELINGS SECTION */
+  .user-input-feelings {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .user-input-feelings .div {
+    background-color: #ffffff;
+    width: 1440px;
+    height: 1175px;
+    position: relative;
+  }
+  
+  .user-input-feelings .text-wrapper {
+    position: absolute;
+    top: 241px;
+    left: 264px;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .user-input-feelings .rectangle {
+    position: absolute;
+    width: 766px;
+    height: 82px;
+    top: 407px;
+    left: 338px;
+    background-color: #d2dae5;
+    border-radius: 20px;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .user-input-feelings .add-another {
+    position: absolute;
+    top: 506px;
+    left: 921px;
+    font-family: "Nunito-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .user-input-feelings .rectangle + .rectangle {
+    /* Add margin or spacing between rectangles if needed */
+    margin-top: 100px;
+  }
+  
+  .user-input-feelings .div-wrapper {
+    position: absolute;
+    width: 241px;
+    height: 78px;
+    top: 646px;
+    left: 863px;
+    background-color: #6e84a6;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .user-input-feelings .div-wrapper:hover .text-wrapper-3 {
+    color: #0b1e3c;
+    transition: color 0.3s ease;
+  }
+
+  .user-input-feelings .div-wrapper:hover {
+    background-color: #d2dae5;
+  }
+  
+  .user-input-feelings .text-wrapper-3 {
+    position: absolute;
+    top: 16px;
+    left: 58px;
+    font-family: "Nunito-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }

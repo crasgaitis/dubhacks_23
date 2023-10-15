@@ -1,5 +1,18 @@
 {
   "dependencies": {
     "mini.css": "^3.0.1"
-  }
+  },
+  "name": "dubhacks",
+  "description": "in progress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-react": "^7.22.15"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
