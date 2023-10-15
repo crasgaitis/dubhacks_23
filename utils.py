@@ -18,7 +18,8 @@ word_list = {
     
     "Depressed":
         ["Melancholic", "Somber", "Blue", "Gloomy", "depression", "rain", "Overwhelming", "Desperate", 
-         "Suicidal", "Paralyzed", "Incapacitating", "Unbearable", "Devastated", "cry", "tears", "pain"],
+         "Suicidal", "Paralyzed", "Incapacitating", "Unbearable", "Devastated", "cry", "tears", "pain", "sad",
+         "crying", "death", "die"],
     
     "Neutral":
         ["bored", "simple", "pleasant", "normal", "neutral"],
