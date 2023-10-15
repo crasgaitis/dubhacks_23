@@ -18,6 +18,10 @@ def user_input_feelings_page():
 def egg_page():
     return render_template('egg-page.html')
 
+@app.route('/loading-page.html')
+def loading_page():
+    return render_template('loading-page.html')
+
 @app.route('/results.html')
 def results_page():
     return render_template('results.html')
